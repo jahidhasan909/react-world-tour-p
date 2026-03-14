@@ -2,7 +2,7 @@
 import React, { useState } from 'react';
 import './Country.css'
 
-const Country = ({ country }) => {
+const Country = ({ country, handleVisitedCountries }) => {
 
     const [Visit, SetNoVisit] = useState(false)
 
@@ -14,12 +14,12 @@ const Country = ({ country }) => {
         } else {
             SetNoVisit(true);
         }
-
+        handleVisitedCountries(country);
     }
 
     return (
         <div className={`Country ${Visit && 'visit'}`}>
-            <img src={country.flags.flags.png} alt={country.flags.flags.alt} />
+            <img className='img' src={country.flags.flags.png} alt={country.flags.flags.alt} />
             <h2>Name : {country.name.common}</h2>
             <p>Population : {country.population.population}</p>
             <p>Area : {country.area.area} {country.area.area < 100980 ? 'Small Country' : 'Big Country'}</p>
