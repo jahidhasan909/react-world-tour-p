@@ -8,8 +8,17 @@ const Countries = ({ CountriesPromise }) => {
     const AllCountry = CountryS.countries;
 
     const [visitCountries, setVisitedCountries] = useState([]);
+    const [visitedFlag, setVisitedFlags] = useState([]);
+
+    const handleVisitedFlag = (flag) => {
+        const newVisitedFlag = [...visitedFlag, flag];
+        setVisitedFlags(newVisitedFlag);
+
+    }
+
+
     const handleVisitedCountries = (country) => {
-        console.log('click', country);
+
 
         const visitCountriesS = [...visitCountries, country];
         setVisitedCountries(visitCountriesS);
@@ -33,9 +42,14 @@ const Countries = ({ CountriesPromise }) => {
 
                 }
             </ol>
+            <div className=''>
+                {
+                    visitedFlag.map(flag => <img src={flag}></img>)
+                }
+            </div>
             <div className='Countries'>
                 {
-                    AllCountry.map(country => <Country key={country.cca3.cca3} country={country} handleVisitedCountries={handleVisitedCountries}></Country>)
+                    AllCountry.map(country => <Country key={country.cca3.cca3} country={country} handleVisitedCountries={handleVisitedCountries} handleVisitedFlag={handleVisitedFlag}></Country>)
                 }
             </div>
         </div>
